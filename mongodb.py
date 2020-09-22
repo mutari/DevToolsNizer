@@ -17,6 +17,9 @@ class Mongodb:
     def get_all_data(self, col):
         return self.get_col(col).find()
 
+    def clear_all_data(self, col):
+        return self.get_col(col).delete_many({})
+
     def json(self, str):
         return dumps(str, indent=2)
 
