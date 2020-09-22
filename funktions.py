@@ -5,6 +5,7 @@ class Functions:
 
     def get_all(self, table_name, args):
         data = self.db.get_all_data(table_name)
+        print(data)
         if(self.has_args(args)):
             for i in args:
                 if(i == "-j"):

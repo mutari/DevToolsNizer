@@ -10,6 +10,10 @@ class Mongodb:
         self.userCol = self.mongodb["ToDo"]["User_profile"]
         self.frameCol = self.mongodb["ToDo"]["Frame_profile"]
 
+        print(self.userCol.find_one())
+
+
+
     def get_all_data(self, col):
         return self.get_col(col).find()
 
