@@ -4,10 +4,7 @@ class Functions:
         self.db = db
 
     def get_all(self, table_name, args):
-        out = []
-        for item in self.db.get_all_data(table_name):
-            out.append(item)
-        data = out
+        data = self.convertToDir(self.db.get_all_data(table_name))
 
         if self.has_args(args):
             for i in args:
@@ -22,6 +19,22 @@ class Functions:
             for i in args:
                 if i == "-p":
                     print(result)
+    
+    def get_by(self, table_name, args):
+        name = "_id"
+        value = "0"
+
+        if self.has_args(args):
+            for i, arg in enumerate(args):
+                if arg == "-n":
+                    name = args[i+1]
+                elif arg == "-v":
+                    value = args[i+1]
+        print(name, value)
+        print(self.convertToDir(self.db.get_by(table_name, name, value)))
+        return self.convertToDir(self.db.get_by(table_name, name, value))
+
+                
 
     def alert_comfirm(self):
         if input('Write "YES" to comfirm:') == "YES":
@@ -33,3 +46,9 @@ class Functions:
         if(len(args) > 0):
             return True
         return False
+
+    def convertToDir(self, data):
+        out = []
+        for item in data:
+            out.append(item)
+        return out

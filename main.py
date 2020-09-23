@@ -1,8 +1,10 @@
 from mongodb import Mongodb
 from dotenv import load_dotenv
 from funktions import Functions
-import os
+from os import system 
 load_dotenv()
+
+system('clear')
 
 connect = Mongodb()
 func = Functions(connect)
@@ -20,5 +22,7 @@ while 1:
     elif cmd_head == "clear-all":
         if func.alert_comfirm():
             func.clear_all(cmd_str, cmd_args)
+    elif cmd_head == "get-by":
+        func.get_by(cmd_str, cmd_args)
     elif cmd_head == "sys-clear":
-        os.system("clear")
+        system("clear")
